@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ResNet18 Image Classifier</title>
+</head>
+<body>
+    <h1>ResNet18 Image Classifier</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="file">Upload an image:</label>
+        <input type="file" id="file" name="file" accept="image/*" />
+        <button type="submit">Submit</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('uploadForm').onsubmit = function(event) {
+            event.preventDefault();
+            
+            var formData = new FormData(document.getElementById('uploadForm'));
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').textContent = 'Prediction: ' + data.prediction;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        };
+    </script>
+</body>
+</html>

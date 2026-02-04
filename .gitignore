@@ -1,0 +1,17 @@
+# Python / ML
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+.env
+
+# ML models & logs
+*.pt
+*.h5
+logs/
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
